@@ -1,38 +1,76 @@
 The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
 
-(__TODO__: your project name)
 
-# Shoppy Shoperson 
+# Tutoring Session Manager for ULC
 
 ## Overview
 
 (__TODO__: a brief one or two paragraph, high-level description of your project)
 
-Remembering what to buy at the grocery store is waaaaay too difficult. Also, shopping for groceries when you're hungry leads to regrettable purchases. Sooo... that's where Shoppy Shoperson comes in!
+The NYU University Learning Center (ULC) is a drop-in based tutoring service through NYU CAS that offers peer tutoring for a multitude of classes. Currently, the ULC uses software through NYU Connect, which is a meeting-based scheduling software that is not well equipped to handle drop-in based tutoring sessions.
 
-Shoppy Shoperson is a web app that will allow users to keep track of multiple grocery lists. Users can register and login. Once they're logged in, they can create or view their grocery list. For every list that they have, they can add items to the list or cross off items.
+This tutoring session manager is a web app that will keep track of all current, waiting, and finished tutoring sessions. The system has information about all of the tutors, all of the courses they tutor, and their current schedule. The system will be able to pair a student with a tutor, begin a session, keep track of the timing of the session and other relevant details, and provide the tutor with an evaluation form to fill out about the student after the session. The system will also be able to keep track of a waitlist when all available tutors are in sessions, and will allow users to move students from the waitlist into a current session. 
+
 
 
 ## Data Model
 
-(__TODO__: a description of your application's data and their relationships to each other) 
+The application will store tutors, students, sessions (current, pending, and completed), and courses (potentially).
 
-The application will store Users, Lists and Items
+* tutors can have multiple courses (via references)
+* students can have multiple courses (via references)
+* sessions can have one tutor and multiple students (via references) as well as one course (via reference)
+* sessions can also have an evaluation object (via embedding)
 
-* users can have multiple lists (via references)
-* each list can have multiple items (by embedding)
-
-(__TODO__: sample documents)
-
-An Example User:
+An Example Tutor:
 
 ```javascript
 {
-  username: "shannonshopper",
+  firstname: 'Sophie',
+  lastname: 'Murthy',
+  username: "sophiemurthy",
   hash: // a password hash,
-  lists: // an array of references to List documents
+  course: // an array of references to Course documents the tutor teaches,
+  hours: // an array of the hours a tutor teaches
 }
 ```
+
+An Example Student:
+
+```javascript
+{
+  firstname: 'Student',
+  lastname: 'Person',
+  username: "studentusername",
+  hash: // a password hash,
+  course: // an array of references to Course documents the student takes,
+}
+```
+
+An Example Session:
+
+```javascript
+{
+  course: // a reference to a Course document
+  tutor: // a reference to a Tutor document
+  students: // an array of reference to Student documents
+  start: // the date and time the session began
+  end: // the date and time the session ended
+  status: "Completed", // can be pending or in progress as well
+  location: "ULC ARC",
+  evaluation: {prepared: True}
+}
+```
+
+An Example Course:
+
+```javascript
+{
+  title: "Applied Internet Technology",
+  professor: "Joe Versoza",
+}
+```
+
 
 An Example List with Embedded Items:
 

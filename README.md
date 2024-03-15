@@ -85,8 +85,6 @@ An Example Course:
 
 ## [Link to Commented First Draft Schema](db.mjs) 
 
-(__TODO__: create a first draft of your Schemas in db.mjs and link to it)
-
 ![link to db.mjs](db.mjs)
 
 ## Wireframes
@@ -137,19 +135,21 @@ An Example Course:
 
 (__TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed)
 
-* (5 points) Integrate user authentication
-    * I'm going to be using passport for user authentication
-    * And account has been made for testing; I'll email you the password
-    * see <code>cs.nyu.edu/~jversoza/ait-final/register</code> for register page
-    * see <code>cs.nyu.edu/~jversoza/ait-final/login</code> for login page
-* (4 points) Perform client side form validation using a JavaScript library
-    * see <code>cs.nyu.edu/~jversoza/ait-final/my-form</code>
-    * if you put in a number that's greater than 5, an error message will appear in the dom
-* (5 points) vue.js
-    * used vue.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
-
-10 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit)
-
+* (2 points) Use a CSS framework or UI toolkit
+    * I'm planning on using Tailwind CSS for styling my site
+    * Tailwind is a CSS framework that provides utility classes to help with design
+    * I can create a theme for the site and use it to style the site without the limitations of standard CSSS
+    * I could potentially used Tailwind UI to help with the design of the site using the components and templates
+* (4 points) Use a server side JavaScript library or module
+    * I'm going to be using passport.js for user authentication
+    * Passport.js is a middleware that provides authentication for Node.js
+    * I can use it to authenticate users logging into the site and prevent unauthorized access
+    * I could potentially use passport-local to authenticate users using a username and password or passport-google-oauth20 to authenticate users using their Google account
+    * I have never used this before, so I've assigned it 4 points
+* (5 points) Automated functional testing for all routes
+    * I will use Headless Chrome to test all of my routes
+    * Headless Chrome is a version of the Chrome browser that can run without a user interface, so I can test my routes in a browser environment
+    * I can use it to test all of my routes to make sure they are working properly
 
 ## [Link to Initial Main Project File](app.mjs) 
 

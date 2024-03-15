@@ -139,6 +139,10 @@ An Example List with Embedded Items:
 
 Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to.
 
+![list](documentation/sitemap.png)
+
+
+
 ## User Stories or Use Cases
 
 (__TODO__: write out how your application will be used through [user stories](http://en.wikipedia.org/wiki/User_story#Format) and / or [use cases](https://en.wikipedia.org/wiki/Use_case))
@@ -151,7 +155,7 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 6. as a tutor, I can add new sessions and view all of my sessions (in progress, pending, and completed)
 7. as a tutor, I can end and evaluate sessions 
 8. as a tutor, I can edit my sessions 
-9. as a 
+9. as a student, I can register for a session
 
 ## Research Topics
 

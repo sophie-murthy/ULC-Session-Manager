@@ -1,0 +1,24 @@
+.mainheader {
+    background-color: rgb(96, 27, 156);
+    height: 75px;
+    width: 100%;
+    font-family: Didot;
+    margin: 0px;
+    padding: 0px;
+    color: white;
+    line-height: 75px;
+    text-align: center;
+    font-size: 30px;
+
+}
+
+
+h1.mainheader {
+    margin: 0;
+    
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+}

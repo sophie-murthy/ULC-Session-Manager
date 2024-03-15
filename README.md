@@ -15,12 +15,15 @@ This tutoring session manager is a web app that will keep track of all current, 
 
 ## Data Model
 
-The application will store tutors, students, sessions (current, pending, and completed), and courses (potentially).
+The application will store tutors, admins, students, sessions (current, pending, and completed), and courses (potentially).
 
 * tutors can have multiple courses (via references)
 * students can have multiple courses (via references)
 * sessions can have one tutor and multiple students (via references) as well as one course (via reference)
 * sessions can also have an evaluation object (via embedding)
+
+* admins can see all sessions
+* tutors can only access their own sessions
 
 An Example Tutor:
 
@@ -32,6 +35,17 @@ An Example Tutor:
   hash: // a password hash,
   course: // an array of references to Course documents the tutor teaches,
   hours: // an array of the hours a tutor teaches
+}
+```
+
+An Example Admin:
+
+```javascript
+{
+  firstname: 'Admin',
+  lastname: 'LastName',
+  username: "adminuser",
+  hash: // a password hash,
 }
 ```
 
@@ -95,17 +109,29 @@ An Example List with Embedded Items:
 
 (__TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc.)
 
-/list/create - page for creating a new shopping list
+/admin - general main page for admins
 
-![list create](documentation/list-create.png)
+![list create](documentation/tutormainpage.png)
 
-/list - page for showing all shopping lists
+/tutor - main page for tutors
 
-![list](documentation/list.png)
+![list](documentation/mainpage.png)
 
-/list/slug - page for showing specific shopping list
+/edit - page for editing a student
 
-![list](documentation/list-slug.png)
+![list](documentation/edit.png)
+
+/login - login page for all users
+
+![list](documentation/login.png)
+
+/register - registration page for users
+
+![list](documentation/register.png)
+
+/end - page for ending a session
+
+![list](documentation/end.png)
 
 ## Site map
 
@@ -119,10 +145,13 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 
 1. as non-registered user, I can register a new account with the site
 2. as a user, I can log in to the site
-3. as a user, I can create a new grocery list
-4. as a user, I can view all of the grocery lists I've created in a single list
-5. as a user, I can add items to an existing grocery list
-6. as a user, I can cross off items in an existing grocery list
+3. as a user, I can edit my profile
+4. as an admin, I can register new tutors and new students 
+5. as an admin, I can view and edit all sessions (in progress, pending, and completed)
+6. as a tutor, I can add new sessions and view all of my sessions (in progress, pending, and completed)
+7. as a tutor, I can end and evaluate sessions 
+8. as a tutor, I can edit my sessions 
+9. as a 
 
 ## Research Topics
 

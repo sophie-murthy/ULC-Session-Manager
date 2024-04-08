@@ -1,10 +1,13 @@
 import './config.mjs';
 import './db.mjs';
+import passport from 'passport';
+import './routes/auth.mjs';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import session from 'express-session';
 import mongoose from 'mongoose';
+import flash from 'connect-flash';
 
 const app = express();
 
@@ -18,6 +21,9 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 const Tutor = mongoose.model('Tutor');
 const Admin = mongoose.model('Admin');
@@ -26,16 +32,23 @@ const Session = mongoose.model('Session');
 const Course = mongoose.model('Course');
 
 app.get('/', (req, res) => {
-    if (req.session.user) {
-        res.render('main', {message: "good"});
+    if (req.isAuthenticated()) {
+        res.render('main', {user: req.user});
     } else {
         res.redirect('/login');
     }
 });
 
 app.get('/login', (req, res) => {
-    res.render('login');
+    const messages = req.flash('error');
+    res.render('login', {message: messages});
 });
+
+app.post('/login', passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true
+}));
 
 app.get('/register', (req, res) => {
     res.render('register');
@@ -44,6 +57,14 @@ app.get('/register', (req, res) => {
 app.post('/register', async (req, res) => {
     if (req.body.password.length < 8) {
         res.render('register', {message: "Password Too Short"});
+        return;
+    }
+    const student = await Student.findOne({username: req.body.username});
+    const tutor = await Tutor.findOne({username: req.body.username});
+    const admin = await Admin.findOne({username: req.body.username});
+    if (student || tutor || admin) {
+        console.log('found');
+        res.render('register', {message: "Username Already Exists"});
     } else {
         const firstname = req.body.firstname;
         const lastname = req.body.lastname;

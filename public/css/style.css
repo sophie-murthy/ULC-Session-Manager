@@ -22,3 +22,93 @@ h1 {
     margin: 0;
     padding: 0;
 }
+
+.login-container {
+    width: 40%;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(96, 27, 156);
+    margin-top: 100px;
+}
+
+.login-header {
+    font-family: Didot;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.login-username {
+    font-family: Didot;
+    font-size: 20px;
+    padding: 5px;
+    width: 200px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.login-password {
+    font-family: Didot;
+    font-size: 20px;
+    padding: 5px;
+    width: 200px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.login-button {
+    font-family: Didot;
+    font-size: 20px;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    height: 40px;
+    width: 100px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loginto-register {
+    font-family: Didot;
+    font-size: 15px;
+    color: white;
+    margin-top: 40px;
+
+}
+
+.register-link {
+    font-family: Didot;
+    font-size: 15px;
+    color: rgb(212, 186, 227);
+
+}

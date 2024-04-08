@@ -2,7 +2,11 @@ import mongoose from 'mongoose';
 
 mongoose.connect(process.env.DSN);
 
-/*
+const courseSchema = new mongoose.Schema({
+    title: {required: true, type: String},
+    professor: {required: false, type: String}
+});
+
 const tutorSchema = new mongoose.Schema({
     firstname: {required: true, type: String},
     lastname: {required: true, type: String},
@@ -38,16 +42,11 @@ const sessionSchema = new mongoose.Schema({
     evaluation: {type: Object}
 });
 
-const courseSchema = new mongoose.Schema({
-    title: {required: true, type: String},
-    professor: {required: false, type: String}
-});
 
+const Tutor = mongoose.model('Tutor', tutorSchema);
+const Admin = mongoose.model('Admin', adminSchema);
+const Student = mongoose.model('Student', studentSchema);
+const Session = mongoose.model('Session', sessionSchema);
+const Course = mongoose.model('Course', courseSchema);
 
-mongoose.model('Tutor', tutorSchema);
-mongoose.model('Admin', adminSchema);
-mongoose.model('Student', studentSchema);
-mongoose.model('Session', sessionSchema);
-mongoose.model('Course', courseSchema);
-
-*/
+export { Tutor, Admin, Student, Session, Course };

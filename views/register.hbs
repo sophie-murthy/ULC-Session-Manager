@@ -1,0 +1,17 @@
+{{message}}
+<form method = "POST" action = "/register">
+    <h2>Register</h2>
+    <h2>Already have an account? <a href="/login">Login</a></h2>
+    <input type="radio" id="student" name="role" value="student">
+    <label for="student">Student</label>
+    <input type="radio" id="tutor" name="role" value="tutor">
+    <label for="tutor">Tutor</label>
+    <input type="radio" id="admin" name="role" value="admin">
+    <label for="admin">Admin</label>
+    <br>
+    <input type="text" placeholder="First Name" name="firstname" required>
+    <input type="text" placeholder="Last Name" name="lastname" required>
+    <input type="text" placeholder="Username" name="username" required>
+    <input type="password" placeholder="Password" name="password" required>
+    <button type="submit">Register</button>
+</form>

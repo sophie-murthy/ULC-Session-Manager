@@ -53,10 +53,13 @@ async function findUserByUsername(username) {
         let dbUser;
         if (obj.type === 'admin') {
             dbUser = await Admin.findById(obj.id).exec();
+            dbUser.type = 'admin';
         } else if (obj.type === 'tutor') {
             dbUser = await Tutor.findById(obj.id).exec();
+            dbUser.type = 'tutor';
         } else if (obj.type === 'student') {
             dbUser = await Student.findById(obj.id).exec();
+            dbUser.type = 'student';
         }
 
         if (dbUser) {

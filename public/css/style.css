@@ -1,3 +1,8 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
 .mainheader {
     background-color: rgb(96, 27, 156);
     height: 75px;
@@ -54,7 +59,6 @@ h1 {
     width: 200px;
     border-radius: 5px;
     border: 1px solid black;
-    margin-right: 10px;
     display: flex;
     justify-content: center; 
     align-items: center; 
@@ -71,7 +75,6 @@ h1 {
     width: 200px;
     border-radius: 5px;
     border: 1px solid black;
-    margin-right: 10px;
     display: flex;
     justify-content: center; 
     align-items: center; 
@@ -106,9 +109,116 @@ h1 {
 
 }
 
+.user-btn-label {
+    color: white;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.user-btn {
+    width: 20px;  
+    height: 20px; 
+    -webkit-appearance: none; 
+    appearance: none;
+    border-radius: 50%;       
+    border: 2px solid white;   
+    outline: none;
+    transition: background 0.3s;
+}
+
+.user-btn:checked {
+    background: white; 
+}
+
 .register-link {
     font-family: Didot;
     font-size: 15px;
     color: rgb(212, 186, 227);
 
 }
+
+.settings-header {
+    background-color: rgb(96, 27, 156);
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    height: 75px;
+    margin-bottom: 50px;
+}
+
+.settings-info {
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-right: 200px;
+    margin-left: 200px;
+    padding: 20px;
+    background-color: rgb(223, 193, 232);
+
+}
+
+.student-info {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.settings-name {
+    font-size: 20px;
+
+}
+
+.settings-username {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.settings-course {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.settings-cname {
+    font-size: 15px;
+
+}
+
+.settings-prof {
+    font-size: 15px;
+
+}
+
+.settings-home {
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid white;
+    color: white;
+    text-align: right;
+    padding: 5px;
+    margin-right: 10px;
+
+}
+
+.settings-button {
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid white;
+    color: white;
+    padding: 5px;
+
+}
+
+.settings-button:hover {
+    background-color:rgb(223, 193, 232);
+}
+
+.settings-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(96, 27, 156);
+    height: 75px;
+    padding-right: 20px;
+    margin-bottom: 50px;
+}
+

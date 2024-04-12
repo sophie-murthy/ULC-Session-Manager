@@ -1,17 +1,26 @@
 {{message}}
-<form method = "POST" action = "/register">
-    <h2>Register</h2>
-    <h2>Already have an account? <a href="/login">Login</a></h2>
-    <input type="radio" id="student" name="role" value="student">
-    <label for="student">Student</label>
-    <input type="radio" id="tutor" name="role" value="tutor">
-    <label for="tutor">Tutor</label>
-    <input type="radio" id="admin" name="role" value="admin">
-    <label for="admin">Admin</label>
-    <br>
-    <input type="text" placeholder="First Name" name="firstname" required>
-    <input type="text" placeholder="Last Name" name="lastname" required>
-    <input type="text" placeholder="Username" name="username" required>
-    <input type="password" placeholder="Password" name="password" required>
-    <button type="submit">Register</button>
-</form>
+<div class = "login-container"> 
+    <form method = "POST" action = "/register">
+        <h2 class = "login-header">Register</h2>
+        <div class="container">
+            <input type="radio" id="student" name="role" value="student" class = "user-btn" required>
+            <label for="student" class = "user-btn-label">Student</label>
+            <input type="radio" id="tutor" name="role" value="tutor" class = "user-btn" required>
+            <label for="tutor" class = "user-btn-label">Tutor</label>
+            <input type="radio" id="admin" name="role" value="admin" class = "user-btn" required>
+            <label for="admin" class = "user-btn-label">Admin</label>
+            <br>
+            <br>
+            <input type="text" placeholder="First Name" name="firstname" class = "login-username" required>
+            <br>
+            <input type="text" placeholder="Last Name" name="lastname" class = "login-username" required>
+            <br>
+            <input type="text" placeholder="Username" name="username" class = "login-username" required>
+            <br>
+            <input type="password" placeholder="Password" name="password" class = "login-password" required>
+            <br>
+            <button type="submit" class = "login-button">Register</button>
+            <h2 class = "loginto-register">Already have an account? <a href="/login" class = "register-link">Login</a></h2>
+        </div>
+    </form> 
+</div>

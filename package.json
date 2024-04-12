@@ -4,11 +4,15 @@
   "description": "The content below is an example project proposal / requirements document. Replace the text below the lines marked \"__TODO__\" with details specific to your project. Remove the \"TODO\" lines.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "postcss public/css/style.css -o dist/output.css"
+
   },
+  "type": "module",
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "autoprefixer": "^10.4.19",
     "connect-flash": "^0.1.1",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
@@ -18,9 +22,11 @@
     "mongoose": "^8.3.1",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
-    "tailwindcss": "^3.4.3"
+    "tailwind": "^4.0.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "postcss-cli": "^11.0.0",
+    "tailwindcss": "^3.4.3"
   }
 }

@@ -13,7 +13,8 @@ const tutorSchema = new mongoose.Schema({
     username: {required: true, type: String},
     password: {required: true, type: String},
     courses: [courseSchema],
-    hours: {type: Array}
+    hours: {type: Array},
+    //sessions: [sessionSchema]
 });
 
 const adminSchema = new mongoose.Schema({
@@ -28,7 +29,8 @@ const studentSchema = new mongoose.Schema({
     lastname: {required: true, type: String},
     username: {required: true, type: String},
     password: {required: true, type: String},
-    courses: [courseSchema]
+    courses: [courseSchema],
+    //sessions: [sessionSchema]
 });
 
 const sessionSchema = new mongoose.Schema({
@@ -41,7 +43,6 @@ const sessionSchema = new mongoose.Schema({
     status: {type: String},
     evaluation: {type: Object}
 });
-
 
 const Tutor = mongoose.model('Tutor', tutorSchema);
 const Admin = mongoose.model('Admin', adminSchema);

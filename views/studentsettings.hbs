@@ -1,0 +1,24 @@
+
+<div class = "settings-container">
+    <a href="/" class = " settings-home">Home</a>
+    <h1 class = "mainheader">Settings</h1>
+</div>
+<div class = "settings-info">
+    <h2 class = "student-info text-center">Student Information</h2>
+    <p class = "settings-name">Name: {{user.firstname}} {{user.lastname}}</p>
+    <p class = "settings-username">Username: {{user.username}}</p>
+    <p class = "settings-course">Courses</p>
+    <div>
+        {{# each user.courses as |course|}}
+        <p class = "settings-cname">Course Name: {{course.title}}</p>
+        <p class = "settings-prof">Professor: {{course.professor}}</p>
+        {{/each}}
+    </div>
+</div>
+<div class = "">
+    <h2 class = "mb-40">Add Courses</h2>
+    <form method = "POST" action = "/settings" class = "flex items-center justify-center mt-40">
+        <input type="text" placeholder="Course Name" name="title" class = "rounded border" required>
+        <input type="text" placeholder="Professor" name="professor" class = "rounded border" required>
+        <button type="submit" class = "rounded border mt-40">Add Course</button>
+</div>

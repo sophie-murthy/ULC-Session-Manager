@@ -1,0 +1,19 @@
+<a href="/">Home</a>
+<h1>Settings</h1>
+<div class = "settings-info">
+    <h2>Tutor Information</h2>
+    <p>Name: {{user.firstname}} {{user.lastname}}</p>
+    <p>Username: {{user.username}}</p>
+    <p>Courses:</p>
+    {{# each user.courses as |course|}}
+        <p>Course Name: {{course.title}}</p>
+        <p>Professor: {{course.professor}}</p>
+    {{/each}}
+</div>
+<div>
+    <h2>Add Courses</h2>
+    <form method = "POST" action = "/settings">
+        <input type="text" placeholder="Course Name" name="title" required>
+        <input type="text" placeholder="Professor" name="professor" required>
+        <button type="submit">Add Course</button>
+</div>

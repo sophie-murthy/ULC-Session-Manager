@@ -1,19 +1,27 @@
-<a href="/">Home</a>
-<h1>Settings</h1>
+<div class = "settings-container">
+    <a href="/" class = "settings-home">Home</a>
+    <h1 class = "mainheader">Settings</h1>
+</div>
 <div class = "settings-info">
-    <h2>Tutor Information</h2>
-    <p>Name: {{user.firstname}} {{user.lastname}}</p>
-    <p>Username: {{user.username}}</p>
-    <p>Courses:</p>
+    <h2 class = "student-info text-center">Tutor Information</h2>
+    <p class = "settings-name">Name: {{user.firstname}} {{user.lastname}}</p>
+    <p class = "settings-username">Username: {{user.username}}</p>
+    <p class = "settings-course">Courses:</p>
     {{# each user.courses as |course|}}
-        <p>Course Name: {{course.title}}</p>
-        <p>Professor: {{course.professor}}</p>
+        <div class = "settings-course-card flex flex-col p-4 border border-gray-300 rounded-lg shadow space-y-2">
+            <p class = "settings-cname">Course Name: {{course.title}}</p>
+            <p class = "settings-prof">Professor: {{course.professor}}</p>
+        </div>
     {{/each}}
 </div>
-<div>
-    <h2>Add Courses</h2>
-    <form method = "POST" action = "/settings">
-        <input type="text" placeholder="Course Name" name="title" required>
-        <input type="text" placeholder="Professor" name="professor" required>
-        <button type="submit">Add Course</button>
+<div class = "flex border rounded text-center add-course-cont">
+    <h2 class = "student-info">Add Courses</h2>
+    <form method = "POST" action = "/settings" class = "flex flex-col items-center justify-center mt-4">
+        <input type="text" placeholder="Course Name" name="title" class = "rounded border center course-name mb-2" required>
+        <input type="text" placeholder="Professor" name="professor" class = "rounded border course-name mb-2" required>
+        <button type="submit" class = "rounded border addcourse-button">Add Course</button>
+    </form>
 </div>
+<form method = "GET" action = "/logout">
+    <button type="submit" class = "request-button">Logout</button>
+</form>

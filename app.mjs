@@ -141,15 +141,33 @@ app.post('/settings', async (req, res) => {
     res.redirect('/settings');
 });
 
-app.get('/api/current_user', (req, res) => {
+app.get('/api/current_user', async (req, res) => {
     if (req.isAuthenticated()) {
-        res.json({ user: req.user });
+        const sessions = await Session.find({students: req.user});
+        res.json({user: req.user, session: sessions});
     } else {
         res.status(401).json({ error: 'User not authenticated' });
     }
 });
 
+app.post('/student' , async (req, res) => {
+    const user = await Student.findById(req.user.id).exec();
+    const coursename = req.body.course;
+    const course = await Course.findOne({_id: coursename});
+    const newSession = new Session({tutor: null, students: [user], course: course, start: null, end: null, location: null, status: 'pending', evaluation: null});
+    await newSession.save();
+    res.redirect('/');
+});
+
+app.get('/logout', (req, res) => {
+    req.logout(function(err) {
+        if (err) { return next(err); }
+        req.session.destroy(() => {
+            res.clearCookie('connect.sid');
+            res.redirect('/');
+        });
+    });
+});
 
 
-
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT);

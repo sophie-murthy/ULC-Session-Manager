@@ -2606,8 +2606,8 @@ h1 {
 .settings-info {
   border-radius: 5px;
   border: 1px solid black;
-  margin-right: 200px;
-  margin-left: 200px;
+  margin-right: 300px;
+  margin-left: 300px;
   padding: 20px;
   background-color: rgb(223, 193, 232);
 }
@@ -2634,6 +2634,7 @@ h1 {
 
 .settings-cname {
   font-size: 15px;
+  margin-bottom: 10px;
 }
 
 .settings-prof {
@@ -2647,7 +2648,7 @@ h1 {
   color: white;
   text-align: right;
   padding: 5px;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .settings-button {
@@ -2670,6 +2671,132 @@ h1 {
   height: 75px;
   padding-right: 20px;
   margin-bottom: 50px;
+}
+
+.settings-course-card {
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  padding: 20px;
+  width: 65%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.add-course-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(223, 193, 232);
+  height: auto;
+  padding: 20px;
+  margin-bottom: 50px;
+  border: 1px solid black;
+  margin-right: 300px;
+  margin-left: 300px;
+  margin-top: 50px;
+}
+
+.course-name {
+  font-family: Didot;
+  font-size: 20px;
+  padding: 5px;
+  width: 200px;
+  border-radius: 5px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.addcourse-button {
+  font-family: Didot;
+  font-size: 20px;
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  height: 40px;
+  width: 150px;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.request-course {
+  display: flex;
+  /* Ensure it is set to flex to use flex properties */
+  flex-direction: column;
+  /* Stack children vertically */
+  justify-content: center;
+  /* Center content vertically */
+  align-items: center;
+  /* Center content horizontally */
+  width: 50%;
+  /* Manage width to suit your design */
+  margin: 50px auto;
+  /* Center the popup horizontally and add vertical spacing */
+  padding: 20px;
+  /* Padding inside the popup */
+  background-color: rgb(223, 193, 232);
+  /* Background color */
+  border-radius: 10px;
+  /* Rounded corners */
+  border: 1px solid black;
+  /* Border for visibility */
+}
+
+#courseForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#courseSelect {
+  width: 70%;
+  padding: 10px;
+  margin-top: 10px;
+  font-family: Didot;
+  font-size: 20px;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin-bottom: 20px;
+}
+
+.request-button {
+  font-family: Didot;
+  font-size: 20px;
+  background-color: rgb(223, 193, 232);
+  color: black;
+  border-radius: 10px;
+  border: 1px solid black;
+  height: 40px;
+  width: 20%;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.courseSelLabel {
+  font-size: 25px;
 }
 
 @media (min-width: 640px) {
@@ -2743,4 +2870,3 @@ h1 {
     }
   }
 }
-

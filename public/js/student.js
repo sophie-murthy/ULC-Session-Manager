@@ -4,39 +4,37 @@ document.addEventListener('DOMContentLoaded', async function() {
     const data = await res.json();
     if (data.user) {
         const user = data.user;
-        console.log(user);
-        let foundSession = false;
-        /*
-        for (const session of user.sessions) {
-            if (session.status === 'pending') {
-                foundSession = true;
-                const sessionElement = document.createElement('div');
-                const title = document.createElement('h3');
-                title.textContent = "Pending";
-                sessionElement.appendChild(title);
-                sessionElement.classList.add('session');
-                sessionElement.innerHTML = `
-                    <h3>${session.course.title}</h3>
-                    <p>${session.start} - ${session.end}</p>
-                    <p>${session.location}</p>
-                `;
-
-            } if (session.status === 'in progress') {
-                foundSession = true;
-                const sessionElement = document.createElement('div');
-                const title = document.createElement('h3');
-                title.textContent = "In Progress";
-                sessionElement.appendChild(title);
-                sessionElement.classList.add('session');
-                sessionElement.innerHTML = `
-                    <h3>${session.course.title}</h3>
-                    <p>${session.start} - ${session.end}</p>
-                    <p>${session.location}</p>
-                `;
+        const sessions = data.session;
+        console.log(sessions);
+        if (sessions && sessions.length > 0) {
+            for (const session of sessions) {
+                if (session.status = "pending") {
+                    const sessionElement = document.createElement('div');
+                    const title = document.createElement('h3');
+                    title.textContent = "Pending";
+                    sessionElement.appendChild(title);
+                    sessionElement.classList.add('session');
+                    console.log(session.course);
+                    sessionElement.innerHTML = `
+                        <h3>${session.course.title}</h3>
+                    `;
+                    document.querySelector('.session-list').appendChild(sessionElement);
+                } else if (session.status = "in progress") {
+                    const sessionElement = document.createElement('div');
+                    const title = document.createElement('h3');
+                    title.textContent = "In Progress";
+                    sessionElement.appendChild(title);
+                    sessionElement.classList.add('session');
+                    console.log(session.course);
+                    sessionElement.innerHTML = `
+                        <h3>${session.course.title}</h3>
+                        <p>${session.start} - ${session.end}</p>
+                        <p>${session.location}</p>
+                    `;
+                    document.querySelector('.session-list').appendChild(sessionElement);
+                }
             }
-        }
-        */
-        if (!foundSession) {
+        } else {
             console.log('No sessions found');
             const requestButton = document.createElement('button');
             requestButton.classList.add('request-button');

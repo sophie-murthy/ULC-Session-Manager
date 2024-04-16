@@ -1,9 +1,9 @@
-{{#if message}}
-    <h2>{{message}}</h2>
-{{/if}}
 <div class = "login-container">
     <form method = 'POST' action ="/login">
         <h2 class = "login-header">Login</h2>
+        {{#if message}}
+        <h2 class = "login-error">{{message}}</h2>
+        {{/if}}
         <div class="container">
             <input type="text" placeholder="Username" name="username" class = "login-username" required>
             <br>

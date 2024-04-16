@@ -28,7 +28,11 @@ async function findUserByUsername(username) {
   passport.use(new LocalStrategy(
     async function(username, password, done) {
         try {
-            const { user, type } = await findUserByUsername(username);
+            const userData = await findUserByUsername(username);
+            if (!userData) {
+                return done(null, false, { message: 'Incorrect username.' });
+            }
+            const { user, type } = userData;
             if (!user) {
                 return done(null, false, { message: 'Incorrect username.' });
             }

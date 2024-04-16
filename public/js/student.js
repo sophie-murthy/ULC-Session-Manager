@@ -13,11 +13,23 @@ document.addEventListener('DOMContentLoaded', async function() {
                     const title = document.createElement('h3');
                     title.textContent = "Pending";
                     sessionElement.appendChild(title);
-                    sessionElement.classList.add('session');
-                    console.log(session.course);
+                    sessionElement.classList.add('session', 'ft-30', 'rounded');;
                     sessionElement.innerHTML = `
-                        <h3>${session.course.title}</h3>
+                        <h1 class = "font-bold mb-5 pending-header">Pending Session</h1>
+                        <h3 class = 'pending-course'>Course Name: ${session.course.title}</h3>
+                        <h3 class = 'pending-student'>Student: ${session.students[0].firstname} ${session.students[0].lastname}</h3>
+                        <h3 class = 'pending-student'>Time Requested: ${session.start}</h3>
                     `;
+                    const cancelButton = document.createElement('button');
+                    cancelButton.textContent = 'Cancel Session';
+                    cancelButton.classList.add('cancel-button');
+                    cancelButton.addEventListener('click', async function() {
+                        await fetch(`/api/current_user`, {
+                            method: 'DELETE'
+                        });
+                        sessionElement.remove();
+                    });
+                    sessionElement.appendChild(cancelButton);
                     document.querySelector('.session-list').appendChild(sessionElement);
                 } else if (session.status = "in progress") {
                     const sessionElement = document.createElement('div');
@@ -34,16 +46,14 @@ document.addEventListener('DOMContentLoaded', async function() {
                     document.querySelector('.session-list').appendChild(sessionElement);
                 }
             }
-        } else {
-            console.log('No sessions found');
-            const requestButton = document.createElement('button');
-            requestButton.classList.add('request-button');
-            requestButton.textContent = 'Request a Session';
-            requestButton.addEventListener('click', async function() {
-                document.querySelector('#coursePopup').style.display = 'block';
-                requestButton.style.display = 'none';
-            });
-            document.querySelector('.session-list').appendChild(requestButton);
         }
+        const requestButton = document.createElement('button');
+        requestButton.classList.add('request-button');
+        requestButton.textContent = 'Request a Session';
+        requestButton.addEventListener('click', async function() {
+            document.querySelector('#coursePopup').style.display = 'block';
+            requestButton.style.display = 'none';
+        });
+        document.querySelector('.session-list').appendChild(requestButton);
     }
 });

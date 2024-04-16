@@ -213,6 +213,20 @@ h1 {
     background-color:rgb(223, 193, 232);
 }
 
+.allusers-button {
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid white;
+    color: white;
+    padding: 5px;
+    margin-right: 10px;
+    width: 85px;
+}
+
+.allusers-button:hover {
+    background-color:rgb(223, 193, 232);
+}
+
 .settings-container {
     display: flex;
     justify-content: space-between;
@@ -221,6 +235,16 @@ h1 {
     height: 75px;
     padding-right: 20px;
     margin-bottom: 50px;
+}
+
+.settings-container2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(96, 27, 156);
+    height: 75px;
+    padding-right: 20px;
+    margin-bottom: 0px;
 }
 
 .settings-course-card {
@@ -291,16 +315,16 @@ h1 {
 }
 
 .request-course {
-    display: flex;            /* Ensure it is set to flex to use flex properties */
-    flex-direction: column;   /* Stack children vertically */
-    justify-content: center;  /* Center content vertically */
-    align-items: center;      /* Center content horizontally */
-    width: 50%;               /* Manage width to suit your design */
-    margin: 50px auto;        /* Center the popup horizontally and add vertical spacing */
-    padding: 20px;            /* Padding inside the popup */
-    background-color: rgb(223, 193, 232); /* Background color */
-    border-radius: 10px;      /* Rounded corners */
-    border: 1px solid black;  /* Border for visibility */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgb(223, 193, 232);
+    border-radius: 10px;  
+    border: 1px solid black;  
 }
 
 #courseForm {
@@ -343,4 +367,147 @@ h1 {
 .courseSelLabel {
     font-size: 25px;
 
+}
+
+
+.session {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(223, 193, 232);
+    height: auto;
+    padding: 20px;
+    margin-bottom: 50px;
+    border: 1px solid black;
+    margin-right: 300px;
+    margin-left: 300px;
+    margin-top: 50px;
+    color: black;
+
+}
+
+.cancel-button {
+    font-size: 20px;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    height: 40px;
+    width: 150px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    margin-top: 20px;
+
+}
+
+.pending-header {
+    font-size: 30px;
+
+}
+
+.pending-course {
+    font-size: 20px;
+
+}
+
+.pending-student {
+    font-size: 20px;
+
+}
+
+.session-headers {
+    display: flex;
+    width: 100%;
+}
+
+.wr-header, .ip-header {
+    flex: 1;
+    text-align: center;
+    width: 50%;
+}
+
+.wr-header {
+    background-color: rgb(223, 193, 232);
+    color: black;
+    font-size: 24px;
+    padding: 10px;
+}
+
+.ip-header {
+    background-color: white;
+    color: black;
+    font-size: 24px;
+    padding: 10px;
+}
+
+.tutor-name {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.all-tutors-header {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+.all-students-header {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+.student-name {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+
+.search-student {
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-start; 
+    gap: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(223, 193, 232);
+    padding: 10px;
+
+}
+
+.search-students-header {
+    margin: 0;
+    white-space: nowrap;
+    font-size: 20px;
+}
+
+.student-search {
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 5px;
+
+}
+
+.search-student button {
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    padding: 5px;
 }

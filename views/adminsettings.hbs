@@ -1,7 +1,12 @@
-<a href="/">Home</a>
-<h1>Settings</h1>
-<div class = "settings-info">
-    <h2>Tutor Information</h2>
-    <p>Name: {{user.firstname}} {{user.lastname}}</p>
-    <p>Username: {{user.username}}</p>
+<div class = "settings-container">
+    <a href="/" class = "settings-home">Home</a>
+    <h1 class = "mainheader">Settings</h1>
 </div>
+<div class = "settings-info">
+    <h2 class = "student-info text-center">Admin Information</h2>
+    <p class = "settings-name">Name: {{user.firstname}} {{user.lastname}}</p>
+    <p class = "settings-username">Username: {{user.username}}</p>
+</div>
+<form method = "GET" action = "/logout">
+    <button type="submit" class = "request-button">Logout</button>
+</form>

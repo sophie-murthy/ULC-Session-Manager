@@ -150,11 +150,53 @@ app.get('/api/current_user', async (req, res) => {
     }
 });
 
+app.delete('/api/current_user', async (req, res) => {
+    if (req.isAuthenticated()) {
+        if (req.user.type === 'student') {
+            const user = await Student.findById(req.user.id).exec();
+            const sessions = await Session.find({students: user});
+            for (const session of sessions) {
+                if (session.status === 'pending') {
+                    await Session.deleteOne({_id: session._id});
+                }
+            }
+        }
+        res.status(204).end();
+    } else {
+        res.status(401).json({ error: 'User not authenticated' });
+    }
+});
+
+app.get('/api/sessions', async (req, res) => {
+    if (req.isAuthenticated()) {
+        if (req.user.type === 'admin') {
+            console.log('admin');
+            const sessions = await Session.find();
+            res.json(sessions);
+        } else if (req.user.type === 'tutor') {
+            const user = await Tutor.findById(req.user.id).exec();
+            const sessions = await Session.find({tutor: user});
+            res.json(sessions);
+        } else {
+            res.status(401).json({ error: 'User not authorized' });
+        
+        }
+    } else {
+        res.status(401).json({ error: 'User not authenticated' });
+    }
+});
+
 app.post('/student' , async (req, res) => {
     const user = await Student.findById(req.user.id).exec();
     const coursename = req.body.course;
     const course = await Course.findOne({_id: coursename});
-    const newSession = new Session({tutor: null, students: [user], course: course, start: null, end: null, location: null, status: 'pending', evaluation: null});
+    const date = new Date();
+    const estTime = date.toLocaleString('en-US', { timeZone: 'America/New_York' });
+    console.log(estTime);
+    const time = estTime.split(",")[1].split(":").join(":");
+    console.log(time);
+    const newSession = new Session({tutor: null, students: [user], course: course, start: time, end: null, location: null, status: 'pending', evaluation: null});
+    console.log(newSession.start)
     await newSession.save();
     res.redirect('/');
 });
@@ -169,5 +211,67 @@ app.get('/logout', (req, res) => {
     });
 });
 
+app.get('/users', async (req, res) => {
+    if (req.isAuthenticated()) {
+        if (req.user.type === 'admin') {
+            const tutors = await Tutor.find();
+            const students = await Student.find();
+            res.render('allusers', {tutors: tutors, students: students});
+        } else {
+            res.redirect('/');
+        }
+    } else {
+        res.redirect('/');
+    }   
+});
+
+
+app.get('/search-students', async (req, res) => {
+    if (req.isAuthenticated()) {
+        if (req.user.type === 'admin') {
+            if (req.query.firstname === '' && req.query.lastname === '') {
+                const students = await Student.find();
+                res.render('allusers', {students: students});
+            } else if (req.query.firstname === '') {
+                const students = await Student.find({lastname: req.query.lastname});
+                res.render('allusers', {students: students});
+            } else if (req.query.lastname === '') {
+                const students = await Student.find({firstname: req.query.firstname});
+                res.render('allusers', {students: students});
+            } else {
+                const students = await Student.find({firstname: req.query.firstname, lastname: req.query.lastname});
+                res.render('allusers', {students: students});
+            }
+        } else {
+            res.redirect('/');
+        }
+    } else {
+        res.redirect('/');
+    }
+});
+
+app.get('/search-tutors', async (req, res) => {
+    if (req.isAuthenticated()) {
+        if (req.user.type === 'admin') {
+            if (req.query.firstname === '' && req.query.lastname === '') {
+                const tutors = await Tutor.find();
+                res.render('allusers', {tutors: tutors});
+            } else if (req.query.firstname === '') {
+                const tutors = await Tutor.find({lastname: req.query.lastname});
+                res.render('allusers', {tutors: tutors});
+            } else if (req.query.lastname === '') {
+                const tutors = await Tutor.find({firstname: req.query.firstname});
+                res.render('allusers', {tutors: tutors});
+            } else {
+                const tutors = await Tutor.find({firstname: req.query.firstname, lastname: req.query.lastname});
+                res.render('allusers', {tutors: tutors});
+            }
+        } else {
+            res.redirect('/');
+        }
+    } else {
+        res.redirect('/');
+    }
+});
 
 app.listen(process.env.PORT);

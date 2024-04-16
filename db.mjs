@@ -37,8 +37,8 @@ const sessionSchema = new mongoose.Schema({
     tutor: {type: tutorSchema},
     students: [studentSchema],
     course: {type: courseSchema},
-    start: {type: Date},
-    end: {type: Date},
+    start: {type: String},
+    end: {type: String},
     location: {type: String},
     status: {type: String},
     evaluation: {type: Object}

@@ -1,0 +1,57 @@
+<div class = "settings-container2">
+    <a href="/" class = "settings-home">Home</a>
+    <h1 class = "mainheader"><a href = "/users">All Users</a></h1>
+</div>
+
+<div>
+    <form method = "GET" action = "/search-tutors" class = "search-student">
+        <h2 class = "search-students-header">Search Tutors</h2>
+        <input type="text" placeholder = "First Name" name="firstname" class = "student-search">
+        <input type = "text" placeholder = "Last Name" name = "lastname" class = "student-search">
+        <button type="submit">Search</button>
+    </form>
+    <form method = "GET" action = "/search-students" class = "search-student">
+        <h2 class = "search-students-header">Search Students</h2>
+        <input type="text" placeholder = "First Name" name="firstname" class = "student-search">
+        <input type = "text" placeholder = "Last Name" name = "lastname" class = "student-search">
+        <button type="submit">Search</button>  
+    </form>
+</div>
+
+<div>
+    {{#if tutors}}
+    <h2 class = 'all-tutors-header'>Tutors</h2>
+    {{/if}}
+    {{#each tutors as |tutor|}}
+    <div class = "settings-info">
+        <p class = "tutor-name font-bold">{{tutor.firstname}} {{tutor.lastname}}</p>
+        <p class = "settings-username">Username: {{tutor.username}}</p>
+        <p class = "settings-course">Courses:</p>
+        {{#each tutor.courses as |course|}}
+            <div class = "settings-course-card flex flex-col p-4 border border-gray-300 rounded-lg shadow space-y-2">
+                <p class = "settings-cname">Course Name: {{course.title}}</p>
+                <p class = "settings-prof">Professor: {{course.professor}}</p>
+            </div>
+        {{/each}}
+    </div>
+    {{/each}}
+</div>
+
+<div>
+    {{#if students}}
+    <h2 class = 'all-tutors-header'>Students</h2>
+    {{/if}}
+    {{#each students as |student|}}
+    <div class = "settings-info">
+        <p class = "student-name font-bold">{{student.firstname}} {{student.lastname}}</p>
+        <p class = "settings-username">Username: {{student.username}}</p>
+        <p class = "settings-course">Courses:</p>
+        {{#each student.courses as |course|}}
+            <div class = "settings-course-card flex flex-col p-4 border border-gray-300 rounded-lg shadow space-y-2">
+                <p class = "settings-cname">Course Name: {{course.title}}</p>
+                <p class = "settings-prof">Professor: {{course.professor}}</p>
+            </div>
+        {{/each}}
+    </div>
+    {{/each}}
+</div>

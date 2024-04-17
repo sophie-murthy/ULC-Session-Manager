@@ -8,11 +8,13 @@ import { fileURLToPath } from 'url';
 import session from 'express-session';
 import mongoose from 'mongoose';
 import flash from 'connect-flash';
+import bcrypt from 'bcryptjs';
 
 const app = express();
 
 app.set('view engine', 'hbs');
 app.use(express.urlencoded({extended: false}));
+app.use(express.json());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, 'public')));
@@ -76,15 +78,19 @@ app.post('/register', async (req, res) => {
         const firstname = req.body.firstname;
         const lastname = req.body.lastname;
         const username = req.body.username;
+        // hash passwords
         const password = req.body.password;
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(password, salt);
+
         if (req.body.role === 'tutor') {
-            const tutor = new Tutor({firstname, lastname, username, password});
+            const tutor = new Tutor({firstname, lastname, username, password: hash});
             await tutor.save();
         } else if (req.body.role === 'student') {
-            const student = new Student({firstname, lastname, username, password});
+            const student = new Student({firstname, lastname, username, password: hash});
             await student.save();
         } else if (req.body.role === 'admin') {
-            const admin = new Admin({firstname, lastname, username, password});
+            const admin = new Admin({firstname, lastname, username, password: hash});
             await admin.save();
         } else {
             res.render('register', {message: "Invalid Role"});
@@ -170,7 +176,6 @@ app.delete('/api/current_user', async (req, res) => {
 app.get('/api/sessions', async (req, res) => {
     if (req.isAuthenticated()) {
         if (req.user.type === 'admin') {
-            console.log('admin');
             const sessions = await Session.find();
             res.json(sessions);
         } else if (req.user.type === 'tutor') {
@@ -186,17 +191,45 @@ app.get('/api/sessions', async (req, res) => {
     }
 });
 
+app.post('/api/sessions/:id', async (req, res) => {
+    if (req.isAuthenticated()) {
+        if (req.user.type === 'admin') {
+            const session = await Session.findById(req.params.id).exec();
+            const tutor = await Tutor.findById(req.body.tutor).exec();
+            session.tutor = tutor;
+            await session.save();
+            res.json(session);
+        } else {
+            res.status(401).json({ error: 'User not authorized' });
+        
+        }
+    } else {
+        res.status(401).json({ error: 'User not authenticated' });
+    }
+});
+
+app.get('/api/tutors', async (req, res) => {
+    if (req.isAuthenticated()) {
+        if (req.user.type === 'admin') {
+            const tutors = await Tutor.find();
+            res.json(tutors);
+        } else {
+            res.status(401).json({ error: 'User not authorized' });
+
+        }
+    } else {
+        res.status(401).json({ error: 'User not authenticated' });
+    }
+});
+
 app.post('/student' , async (req, res) => {
     const user = await Student.findById(req.user.id).exec();
     const coursename = req.body.course;
     const course = await Course.findOne({_id: coursename});
     const date = new Date();
     const estTime = date.toLocaleString('en-US', { timeZone: 'America/New_York' });
-    console.log(estTime);
     const time = estTime.split(",")[1].split(":").join(":");
-    console.log(time);
     const newSession = new Session({tutor: null, students: [user], course: course, start: time, end: null, location: null, status: 'pending', evaluation: null});
-    console.log(newSession.start)
     await newSession.save();
     res.redirect('/');
 });

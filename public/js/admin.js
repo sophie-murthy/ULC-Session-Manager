@@ -15,6 +15,36 @@ document.addEventListener('DOMContentLoaded', async function() {
                     <h3 class = 'pending-student'>Student: ${session.students[0].firstname} ${session.students[0].lastname}</h3>
                     <h3 class = 'pending-student'>Time Requested: ${session.start}</h3>
                 `;
+                // admin can assign tutor to session
+                const form = document.createElement('form');
+                const select = document.createElement('select');
+                select.name = 'tutor';
+                select.id = 'tutor';
+                const tutors = await fetch('/api/tutors');
+                const tutorData = await tutors.json();
+                for (const tutor of tutorData) {
+                    const option = document.createElement('option');
+                    option.value = tutor._id;
+                    option.textContent = `${tutor.firstname} ${tutor.lastname}`;
+                    select.appendChild(option);
+                }
+                form.appendChild(select);   
+                const assignButton = document.createElement('button');
+                assignButton.textContent = 'Assign Tutor';
+                assignButton.classList.add('assign-button');
+                assignButton.addEventListener('click', async function() {
+                    const tutorId = select.value;
+                    await fetch(`/api/sessions/${session._id}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({tutor: tutorId})
+                    });
+                    sessionElement.remove();
+                });
+                form.appendChild(assignButton);
+                sessionElement.appendChild(form);
                 const cancelButton = document.createElement('button');
                 cancelButton.textContent = 'Cancel Session';
                 cancelButton.classList.add('cancel-button');

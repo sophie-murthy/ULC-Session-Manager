@@ -6,13 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-css": "postcss public/css/style.css -o dist/output.css"
-
   },
   "type": "module",
   "author": "",
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^10.4.19",
+    "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",

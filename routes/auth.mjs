@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import '../db.mjs';
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
+import bcrypt from 'bcryptjs';
 
 const router = express.Router();
 
@@ -36,7 +37,7 @@ async function findUserByUsername(username) {
             if (!user) {
                 return done(null, false, { message: 'Incorrect username.' });
             }
-            if (user.password !== password) {
+            if (!bcrypt.compareSync(password, user.password)) {
                 return done(null, false, { message: 'Incorrect password.' });
             }
             user.type = type;

@@ -1,8 +1,10 @@
-<div class = "settings-container">
+<div class = "settings-container2">
     <h1 class = "mainheader">Sessions with {{user.firstname}} {{user.lastname}}</h1>
     <a href="/settings" class = "settings-button">Settings</a>
 </div>
-<div>
-    <span>Waiting Room</span>
-    <span>In Progress</span>
+<div class = "session-headers">
+    <span class = "wr-header">Waiting Room</span>
+    <span class = "ip-header">In Progress</span>
 </div>
+<div class = "session-list"></div>
+<script defer src="./js/tutor.js" type="module"></script>

@@ -180,8 +180,16 @@ app.get('/api/sessions', async (req, res) => {
             res.json(sessions);
         } else if (req.user.type === 'tutor') {
             const user = await Tutor.findById(req.user.id).exec();
-            const sessions = await Session.find({tutor: user});
-            res.json(sessions);
+            //const sessions3 = await Session.find({tutor: user}).exec();
+            //console.log('sessions', sessions3);
+            const sessions = [];
+            const allSessions = await Session.find();
+            for (const session of allSessions) {
+                if (session.tutor?._id.toString() == user._id.toString()) {
+                    sessions.push(session);
+                }
+            }
+            res.json({sessions: sessions, user: user});
         } else {
             res.status(401).json({ error: 'User not authorized' });
         
@@ -192,16 +200,122 @@ app.get('/api/sessions', async (req, res) => {
 });
 
 app.post('/api/sessions/:id', async (req, res) => {
+    if (!req.isAuthenticated()) {
+        return res.status(401).json({ error: 'User not authenticated' });
+    }
+
+    if (req.user.type === 'admin') {
+        const session = await Session.findById(req.params.id).exec();
+        const tutor = await Tutor.findById(req.body.tutor).exec();
+        if (!session || !tutor) {
+            return res.status(404).json({ error: 'Session or tutor not found' });
+        }
+        session.tutor = tutor;
+        await session.save();
+        return res.json(session);
+    } 
+    
+    if (req.user.type === 'tutor') {
+        const user = await Tutor.findById(req.user.id).exec();
+        const session = await Session.findById(req.params.id).exec();
+        if (!session) {
+            return res.status(404).json({ error: 'Session not found' });
+        }
+        if (session.tutor._id.toString() === user._id.toString()) {
+            if (req.body.status === 'in progress' || req.body.status === 'completed') {
+                session.status = req.body.status;
+                const date = new Date();
+                const estTime = date.toLocaleString('en-US', { timeZone: 'America/New_York' });
+                const time = estTime.split(",")[1].split(":").join(":").trim();
+                session.start = time; // Set this conditionally based on status
+                await session.save();
+                return res.json(session);
+            }
+        } else {
+            return res.status(401).json({ error: 'User not authorized' });
+        }
+    }
+
+    // Fallback for unauthorized access
+    return res.status(401).json({ error: 'User not authorized' });
+});
+
+
+
+/*
+
+app.post('/api/sessions/:id', async (req, res) => {
     if (req.isAuthenticated()) {
         if (req.user.type === 'admin') {
             const session = await Session.findById(req.params.id).exec();
+            console.log(session);
+            console.log(req.body.tutor);
             const tutor = await Tutor.findById(req.body.tutor).exec();
+            console.log(tutor);
             session.tutor = tutor;
             await session.save();
             res.json(session);
+        } if (req.user.type === 'tutor') {
+            const user = await Tutor.findById(req.user.id).exec();
+            const session = await Session.findById(req.params.id).exec();
+            if (session.tutor._id.toString() == user._id.toString()) {
+                if (req.body.status === 'in progress') {
+                    session.status = req.body.status;
+                    const date = new Date();
+                    const estTime = date.toLocaleString('en-US', { timeZone: 'America/New_York' });
+                    const time = estTime.split(",")[1].split(":").join(":").trim();
+                    session.start = time;
+                    await session.save();
+                    res.json(session);
+                } else if (req.body.status === 'completed') {
+                    session.status = req.body.status;
+                    const date = new Date();
+                    const estTime = date.toLocaleString('en-US', { timeZone: 'America/New_York' });
+                    const time = estTime.split(",")[1].split(":").join(":");
+                    session.end = time;
+                    await session.save();
+                    res.json(session);
+                }
+            } else {
+                res.status(401).json({ error: 'User not authorized' });
+            }
+        
         } else {
             res.status(401).json({ error: 'User not authorized' });
         
+        }
+    } else {
+        res.status(401).json({ error: 'User not authenticated' });
+    }
+});
+
+*/
+
+app.delete('/api/sessions/:id', async (req, res) => {
+    if (req.isAuthenticated()) {
+        if (req.user.type === 'admin') {
+            await Session.deleteOne({_id: req.params.id});
+            res.status(204).end();
+        } else if (req.user.type === 'student') {
+            const user = await Student.findById(req.user.id).exec();
+            const session = await Session.findById(req.params.id).exec();
+            if (session.students.includes(user)) {
+                await Session.deleteOne({_id: req.params.id});
+                res.status(204).end();
+            } else {
+                res.status(401).json({ error: 'User not authorized' });
+            }
+        } else if (req.user.type === 'tutor') {
+            const user = await Tutor.findById(req.user.id).exec();
+            const session = await Session.findById(req.params.id).exec();
+            if (session.tutor === user) {
+                await Session.deleteOne({_id: req.params.id});
+                res.status(204).end();
+            } else {
+                res.status(401).json({ error: 'User not authorized' });
+            }
+        } else {
+            res.status(401).json({ error: 'User not authorized' });
         }
     } else {
         res.status(401).json({ error: 'User not authenticated' });

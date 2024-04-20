@@ -29,7 +29,7 @@ An Example Tutor:
   firstname: 'Sophie',
   lastname: 'Murthy',
   username: "sophiemurthy",
-  hash: // a password hash,
+  password: // a password hash,
   course: // an array of references to Course documents the tutor teaches,
   hours: // an array of the hours a tutor teaches
 }
@@ -42,7 +42,7 @@ An Example Admin:
   firstname: 'Admin',
   lastname: 'LastName',
   username: "adminuser",
-  hash: // a password hash,
+  password: // a password hash,
 }
 ```
 
@@ -54,7 +54,7 @@ An Example Student:
   lastname: 'Person',
   username: "studentusername",
   hash: // a password hash,
-  course: // an array of references to Course documents the student takes,
+  password: // an array of references to Course documents the student takes,
 }
 ```
 
@@ -89,17 +89,22 @@ An Example Course:
 
 ## Wireframes
 
-/admin - general main page for admins
+/ - general main page 
+(different if logged in as admin, tutor, or student)
 
-![list create](documentation/tutormainpage.png)
+![list](documentation/student.png)
 
-/tutor - main page for tutors
+![list](documentation/admin.png)
 
-![list](documentation/mainpage.png)
+![list](documentation/tutor.png)
 
-/edit - page for editing a student
+/settings - page for editing a user's profile
 
-![list](documentation/edit.png)
+![list](documentation/settings.png)
+
+/users - page for viewing all users in admin view
+
+![list](documentation/users.png)
 
 /login - login page for all users
 
@@ -108,6 +113,10 @@ An Example Course:
 /register - registration page for users
 
 ![list](documentation/register.png)
+
+/edit - page for editing a student
+
+![list](documentation/edit.png)
 
 /end - page for ending a session
 

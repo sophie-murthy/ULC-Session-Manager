@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         for (const session of sessions) {
             if (session.status === "pending") {
                 const sessionElement = document.createElement('div');
-                sessionElement.classList.add('session', 'ft-30', 'rounded');
+                sessionElement.classList.add('session', 'ft-30', 'rounded', 'shadow-lg');
                 if (!session.tutor) {
                     sessionElement.innerHTML = `
                     <h1 class = "font-bold mb-5 pending-header">Pending Session</h1>
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     const select = document.createElement('select');
                     select.name = 'tutor';
                     select.id = 'tutor';
-                    select.classList.add('select');
+                    select.classList.add('select', 'text-center');
                     const tutors = await fetch('/api/tutors');
                     const tutorData = await tutors.json();
                     for (const tutor of tutorData) {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     form.appendChild(select);   
                     const assignButton = document.createElement('button');
                     assignButton.textContent = 'Assign Tutor';
-                    assignButton.classList.add('assign-button');
+                    assignButton.classList.add('assign-button', 'shadow-lg');
                     assignButton.addEventListener('click', async function() {
                         const tutorId = select.value;
                         await fetch(`/api/sessions/${session._id}`, {
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     
                 const cancelButton = document.createElement('button');
                 cancelButton.textContent = 'Cancel Session';
-                cancelButton.classList.add('cancel-button');
+                cancelButton.classList.add('cancel-button', 'shadow-lg');
                 cancelButton.addEventListener('click', async function() {
                     await fetch(`/api/sessions/${session._id}`, {
                         method: 'DELETE'
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 document.querySelector('.session-list').appendChild(sessionElement);
             } else if (session.status === "in progress") {
                 const sessionElement = document.createElement('div');
-                sessionElement.classList.add('session', 'ft-30', 'rounded');
+                sessionElement.classList.add('session', 'ft-30', 'rounded', 'shadow-lg');
                 sessionElement.innerHTML = `
                     <h1 class = "font-bold mb-5 pending-header">In Progress</h1>
                     <h3 class = 'pending-course'>Course Name: ${session.course.title}</h3>

@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     const title = document.createElement('h3');
                     title.textContent = "Pending";
                     sessionElement.appendChild(title);
-                    sessionElement.classList.add('session', 'ft-30', 'rounded');;
+                    sessionElement.classList.add('session', 'ft-30', 'rounded', 'shadow-lg');;
                     if (!session.tutor) {
                         sessionElement.innerHTML = `
                             <h1 class = "font-bold mb-5 pending-header">Pending Session</h1>
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     document.querySelector('.session-list').appendChild(sessionElement);
                 } else if (session.status == "in progress") {
                     const sessionElement = document.createElement('div');
-                    sessionElement.classList.add('session', 'ft-30', 'rounded');
+                    sessionElement.classList.add('session', 'ft-30', 'rounded', 'shadow-lg');
                     sessionElement.innerHTML = `
                         <h1 class = "font-bold mb-5 pending-header">In Progress</h1>
                         <h3 class = 'pending-course'>Course Name: ${session.course.title}</h3>
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
         }
         const requestButton = document.createElement('button');
-        requestButton.classList.add('request-button');
+        requestButton.classList.add('request-button', 'shadow-lg');
         requestButton.textContent = 'Request a Session';
         requestButton.addEventListener('click', async function() {
             document.querySelector('#coursePopup').style.display = 'block';

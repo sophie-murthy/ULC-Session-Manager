@@ -1,5 +1,5 @@
 {{message}}
-<div class = "login-container"> 
+<div class = "login-container rounded shadow-lg"> 
     <form method = "POST" action = "/register">
         <h2 class = "login-header">Register</h2>
         <div class="container">
@@ -11,16 +11,16 @@
             <label for="admin" class = "user-btn-label">Admin</label>
             <br>
             <br>
-            <input type="text" placeholder="First Name" name="firstname" class = "login-username" required>
+            <input type="text" placeholder="First Name" name="firstname" class = "login-username shadow-lg" required>
             <br>
-            <input type="text" placeholder="Last Name" name="lastname" class = "login-username" required>
+            <input type="text" placeholder="Last Name" name="lastname" class = "login-username shadow-lg" required>
             <br>
-            <input type="text" placeholder="Username" name="username" class = "login-username" required>
+            <input type="text" placeholder="Username" name="username" class = "login-username shadow-lg" required>
             <br>
-            <input type="password" placeholder="Password" name="password" class = "login-password" required>
+            <input type="password" placeholder="Password" name="password" class = "login-password shadow-lg" required>
             <br>
             <button type="submit" class = "login-button">Register</button>
-            <h2 class = "loginto-register">Already have an account? <a href="/login" class = "register-link">Login</a></h2>
+            <h2 class = "loginto-register text-center">Already have an account? <a href="/login" class = "register-link">Login</a></h2>
         </div>
     </form> 
 </div>

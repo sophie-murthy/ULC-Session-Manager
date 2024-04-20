@@ -240,57 +240,6 @@ app.post('/api/sessions/:id', async (req, res) => {
     return res.status(401).json({ error: 'User not authorized' });
 });
 
-
-
-/*
-
-app.post('/api/sessions/:id', async (req, res) => {
-    if (req.isAuthenticated()) {
-        if (req.user.type === 'admin') {
-            const session = await Session.findById(req.params.id).exec();
-            console.log(session);
-            console.log(req.body.tutor);
-            const tutor = await Tutor.findById(req.body.tutor).exec();
-            console.log(tutor);
-            session.tutor = tutor;
-            await session.save();
-            res.json(session);
-        } if (req.user.type === 'tutor') {
-            const user = await Tutor.findById(req.user.id).exec();
-            const session = await Session.findById(req.params.id).exec();
-            if (session.tutor._id.toString() == user._id.toString()) {
-                if (req.body.status === 'in progress') {
-                    session.status = req.body.status;
-                    const date = new Date();
-                    const estTime = date.toLocaleString('en-US', { timeZone: 'America/New_York' });
-                    const time = estTime.split(",")[1].split(":").join(":").trim();
-                    session.start = time;
-                    await session.save();
-                    res.json(session);
-                } else if (req.body.status === 'completed') {
-                    session.status = req.body.status;
-                    const date = new Date();
-                    const estTime = date.toLocaleString('en-US', { timeZone: 'America/New_York' });
-                    const time = estTime.split(",")[1].split(":").join(":");
-                    session.end = time;
-                    await session.save();
-                    res.json(session);
-                }
-            } else {
-                res.status(401).json({ error: 'User not authorized' });
-            }
-        
-        } else {
-            res.status(401).json({ error: 'User not authorized' });
-        
-        }
-    } else {
-        res.status(401).json({ error: 'User not authenticated' });
-    }
-});
-
-*/
-
 app.delete('/api/sessions/:id', async (req, res) => {
     if (req.isAuthenticated()) {
         if (req.user.type === 'admin') {

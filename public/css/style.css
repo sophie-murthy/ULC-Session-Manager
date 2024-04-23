@@ -344,15 +344,15 @@ h1 {
 }
 
 .request-course {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center; 
     width: 50%;
     margin: 50px auto;
     padding: 20px;
     background-color: rgb(234, 220, 239);
-    border-radius: 10px;   
+    border-radius: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 #courseForm {
@@ -619,4 +619,151 @@ h1 {
 
 .footer {
     margin-top: 100px;
+}
+
+.close {
+    color:rgb(65, 24, 80);
+    font-size: 30px;
+}
+
+.close:hover {
+    cursor: pointer;
+}
+
+.modal {
+    background-color: rgb(234, 220, 239);
+    margin: 20% auto;
+    padding: 20px;
+    width: 50%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.edit-session-button {
+    font-size: 20px;
+    color: black;
+    border-radius: 10px;
+    height: 40px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    margin-top: 30px;
+}
+
+.edit-session-button:hover {
+    background-color:rgb(65, 24, 80);
+    color: white;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.edit-header {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.select2 {
+    font-size: 20px;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 5px;
+    width: 300px;
+}
+
+.edit-button {
+    font-size: 20px;
+    color: black;
+    border-radius: 10px;
+    height: 40px;
+    width: 150px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    border: 1px solid black;
+
+}
+
+.edit-button:hover {
+    background-color:rgb(65, 24, 80);
+    color: white;
+}
+
+.select2,
+.datetime-input {
+    /*flex-grow: 1;*/
+    font-size: 20px;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 5px;
+    width: 300px;
+}
+
+.modal-label {
+    font-size: 20px;
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.radio-label {
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.check-label {
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.end-button {
+    font-size: 20px;
+    color: black;
+    border-radius: 10px;
+    height: 40px;
+    width: 150px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+
+}
+
+.end-button:hover {
+    background-color:rgb(65, 24, 80);
+    color: white;
+}
+
+.textarea-input {
+    width: 300px;
+    padding: 10px;
+    font-size: 15px;
+    
 }

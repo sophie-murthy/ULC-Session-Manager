@@ -2,7 +2,8 @@
     <h1 class = "mainheader">Welcome {{user.firstname}} {{user.lastname}}</h1>
     <a href="/settings" class = "settings-button">Settings</a>
 </div>
-<div id="coursePopup" style="display:none;" class = "request-course shadow-lg">
+<dialog id="coursePopup" class = "request-course shadow-lg">
+  <button id="closeCoursePopup" class = "close">&times;</button>
   <form id="courseForm" method = "POST" action = "/student">
     <label for="courseSelect" class = "courseSelLabel">Choose a course:</label>
     <select id="courseSelect" name = "course">
@@ -13,7 +14,7 @@
     </select>
     <button type="submit" class = "submit-button">Submit</button>
   </form>
-</div>
+</dialog>
 <div class = "session-list">
     
 </div>

@@ -5,8 +5,6 @@ import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from 'bcryptjs';
 
-const router = express.Router();
-
 const Tutor = mongoose.model('Tutor');
 const Admin = mongoose.model('Admin');
 const Student = mongoose.model('Student');

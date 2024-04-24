@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             if (session.status === "pending") {
                 const sessionElement = document.createElement('div');
                 sessionElement.classList.add('session', 'ft-30', 'rounded', 'shadow-lg');
+                sessionElement.id = "S" + session._id;
                 sessionElement.innerHTML = `
                 <h1 class = "font-bold mb-5 pending-header">Pending Session</h1>
                 <h3 class = 'pending-course'>Course Name: ${session.course.title}</h3>
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     sessionElement.remove();
                     const newSessionElement = document.createElement('div');
                     newSessionElement.classList.add('session', 'ft-30', 'rounded', 'shadow-lg');
+                    newSessionElement.id = "S" + newSession._id;
                     let innerHTML = `
                         <h1 class = "font-bold mb-5 pending-header">In Progress</h1>
                         <h3 class = 'pending-course'>Course Name: ${newSession.course.title}</h3>
@@ -175,6 +177,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             } else if (session.status === "in progress") {
                 const sessionElement = document.createElement('div');
                 sessionElement.classList.add('session', 'ft-30', 'rounded', 'shadow-lg');
+                sessionElement.id = "S" + session._id;
                 let innerHTML = `
                     <h1 class="font-bold mb-5 pending-header">In Progress</h1>
                     <h3 class='pending-course'>Course Name: ${session.course.title}</h3>
@@ -300,6 +303,10 @@ document.addEventListener('DOMContentLoaded', async function() {
                 document.querySelector('.session-list').appendChild(sessionElement);
             }
         }
+        const endDiv = document.createElement('div');
+        endDiv.classList.add('end-div2');
+        document.querySelector('.session-list').appendChild(endDiv);
+
     }
 
 

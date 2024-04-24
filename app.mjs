@@ -243,15 +243,6 @@ app.delete('/api/sessions/:id', async (req, res) => {
         if (req.user.type === 'admin') {
             await Session.deleteOne({_id: req.params.id});
             res.status(204).end();
-        } else if (req.user.type === 'student') {
-            const user = await Student.findById(req.user.id).exec();
-            const session = await Session.findById(req.params.id).exec();
-            if (session.students.includes(user)) {
-                await Session.deleteOne({_id: req.params.id});
-                res.status(204).end();
-            } else {
-                res.status(401).json({ error: 'User not authorized' });
-            }
         } else if (req.user.type === 'tutor') {
             const user = await Tutor.findById(req.user.id).exec();
             const session = await Session.findById(req.params.id).exec();
@@ -261,6 +252,16 @@ app.delete('/api/sessions/:id', async (req, res) => {
             } else {
                 res.status(401).json({ error: 'User not authorized' });
             }
+        } else if (req.user.type === 'student') {
+            const user = await Student.findById(req.user.id).exec();
+            const session = await Session.findById(req.params.id).exec();
+            if (session.students[0]._id.toString() === user._id.toString()){
+                await Session.deleteOne({_id: req.params.id});
+                res.status(204).end();
+            } else {
+                res.status(401).json({ error: 'User not authorized' });
+            }
+        
         } else {
             res.status(401).json({ error: 'User not authorized' });
         }

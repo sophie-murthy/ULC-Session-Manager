@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                     const title = document.createElement('h3');
                     title.textContent = "Pending";
                     sessionElement.appendChild(title);
-                    sessionElement.classList.add('session', 'ft-30', 'rounded', 'shadow-lg');;
+                    sessionElement.classList.add('session', 'ft-30', 'rounded', 'shadow-lg');
+                    sessionElement.id = "S" + session._id;
                     if (!session.tutor) {
                         let innerHTML = `
                             <h1 class="font-bold mb-5 pending-header">Pending Session</h1>
@@ -52,7 +53,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     cancelButton.textContent = 'Cancel Session';
                     cancelButton.classList.add('cancel-button', 'shadow-lg');
                     cancelButton.addEventListener('click', async function() {
-                        await fetch(`/api/current_user`, {
+                        await fetch(`/api/sessions/${session._id}`, {
                             method: 'DELETE'
                         });
                         sessionElement.remove();
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 } else if (session.status == "in progress") {
                     const sessionElement = document.createElement('div');
                     sessionElement.classList.add('session', 'ft-30', 'rounded', 'shadow-lg');
+                    sessionElement.id = "S" + session._id;
                     let innerHTML = `
                         <h1 class="font-bold mb-5 pending-header">In Progress</h1>
                         <h3 class='pending-course'>Course Name: ${session.course.title}</h3>
@@ -78,5 +80,9 @@ document.addEventListener('DOMContentLoaded', async function() {
                 }
             }
         }
+        const endDiv = document.createElement('div');
+        endDiv.classList.add('end-div2');
+        const sessionList = document.querySelector('.session-list');
+        sessionList.append(endDiv);
     }
 });

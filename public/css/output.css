@@ -810,6 +810,10 @@ video {
   display: inline-flex;
 }
 
+.\!table {
+  display: table !important;
+}
+
 .table {
   display: table;
 }
@@ -862,12 +866,20 @@ video {
   display: inline-grid;
 }
 
+.\!contents {
+  display: contents !important;
+}
+
 .contents {
   display: contents;
 }
 
 .list-item {
   display: list-item;
+}
+
+.\!hidden {
+  display: none !important;
 }
 
 .hidden {
@@ -3187,6 +3199,28 @@ h1 {
   color: white;
 }
 
+.eval-button {
+  font-size: 18px;
+  color: black;
+  border-radius: 10px;
+  height: 40px;
+  width: 150px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  border: 1px solid black;
+}
+
+.eval-button:hover {
+  background-color:rgb(65, 24, 80);
+  color: white;
+}
+
 .select2,
 .datetime-input {
   /*flex-grow: 1;*/
@@ -3208,6 +3242,24 @@ h1 {
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.input-group2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.input-group3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -3247,6 +3299,12 @@ h1 {
   width: 300px;
   padding: 10px;
   font-size: 15px;
+}
+
+.no-sessions {
+  font-size: 30px;
+  text-align: center;
+  margin-top: 50px;
 }
 
 @media (min-width: 640px) {

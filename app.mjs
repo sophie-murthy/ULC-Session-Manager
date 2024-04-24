@@ -474,5 +474,24 @@ app.post('/end/:id', async (req, res) => {
     }
 });
 
+app.get('/completed', async (req, res) => {
+    if (req.isAuthenticated()) {
+        if (req.user.type === 'admin') {
+            const sessions = await Session.find({status: 'completed'});
+            const user = await Admin.findById(req.user.id).exec();
+            res.render('completed', {sessions: sessions, user: user});
+        } else if (req.user.type === 'tutor') {
+            const user = await Tutor.findById(req.user.id).exec();
+            const sessions = await Session.find({tutor: user, status: 'completed'});
+            res.render('completed', {sessions: sessions, user: user, type: 'tutor'});
+        
+        } else {
+            res.redirect('/');
+        }
+    } else {
+        res.redirect('/');
+    }
+});
+
 
 app.listen(process.env.PORT);

@@ -1,0 +1,93 @@
+<div class = "settings-container2">
+    {{#if type}}
+        <h1 class = "mainheader">Sessions with {{user.firstname}} {{user.lastname}}</h1>
+    {{else}}
+        <h1 class = "mainheader">Welcome {{user.firstname}} {{user.lastname}}</h1>
+        <a href="/users" class = "allusers-button text-center">All Users</a>
+    {{/if}}
+    <a href="/settings" class = "settings-button">Settings</a>
+</div>
+<div class = "session-headers">
+    <a href = "/" class = "ip-header">Current Sessions</a>
+    <a href = "/completed" class = "wr-header">Past Sessions</a>
+</div>
+<div class = "session-list">
+    {{#each sessions as |session|}}
+        <div class = "session shadow-lg ft-30 rounded">
+                <h1 class = "font-bold mb-5 pending-header">Completed Session</h1>
+                <h3 class = 'pending-course'>Course Name: {{session.course.title}}</h3>
+                {{#each session.students as |student|}}
+                    <h3 class = 'pending-student'>Student: {{student.firstname}} {{student.lastname}}</h3>
+                {{/each}}
+                <h3 class = 'pending-tutor'>Tutor: {{session.tutor.firstname}} {{session.tutor.lastname}}</h3>
+                <h3 class = 'pending-student'>Start: {{session.start}}</h3>
+                <h3 class = 'pending-tutor'>End: {{session.end}}</h3>
+                {{#if session.location}}
+                    <h3 class = 'pending-student'>Location: {{session.location}}</h3>
+                {{/if}}
+                <button class = "eval-button">View Evaluation</button>
+        </div>
+        <dialog class = 'modal shadow-lg rounded'>
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 class = "edit-header">Session Evaluation</h2>
+                <div class = "input-group2">
+                    <h3 class = "modal-label font-bold">Preparedness</h3>
+                </div>
+                <div class = "input-group3">
+                    <h3>{{session.evaluation.prepared}}</h3>
+                </div>
+                {{#if session.evaluation.content}}
+                <div class = "input-group2">
+                    <h3 class = 'modal-label font-bold'>Session Content</h3>
+                </div>
+                <div class = "input-group3">
+                    <ul>
+                        {{#each session.evaluation.content as |content|}}
+                        <li>{{content}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+                {{/if}}
+                {{#if session.evaluation.notes}}
+                <div class = "input-group2">
+                    <h3 class = "modal-label font-bold">Notes</h3>
+                </div>
+                <div class = "input-group3">
+                    <p>{{session.evaluation.notes}}</p>
+                </div>
+                {{/if}}
+            </div>
+        </dialog>
+    {{/each}}
+</div>
+<script defer src="./js/completed.js" type="module"></script>
+
+<!--
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class = "edit-header">Edit Session</h2>
+        <form method="POST" action="/edit/${session._id}">
+            <div class="input-group">
+                <label for="course" class="modal-label font-bold">Course</label>
+                <select id="course" class="select2" name="course">
+                    ${courseSelect}
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="start" class="modal-label font-bold">Start Time</label>
+                <input type="datetime-local" id="start" name="start" class="datetime-input">
+            </div>
+            <div class="input-group">
+                <label for="location" class="modal-label font-bold">Location</label>
+                <select id="location" class="select2" name="location">
+                    <option value="ULC ARC">ULC ARC</option>
+                    <option value="ULC UHall">ULC UHall</option>
+                    <option value="Online">Online</option>
+                </select>
+            </div>
+            <button type="submit" class="edit-session-button">Edit Session</button>
+        </form>
+    </div>
+
+-->

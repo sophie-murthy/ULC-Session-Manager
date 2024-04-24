@@ -1,7 +1,7 @@
 import './config.mjs';
 import './db.mjs';
 import passport from 'passport';
-import './routes/auth.mjs';
+import './auth.mjs';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';

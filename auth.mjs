@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import '../db.mjs';
+import './db.mjs';
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from 'bcryptjs';

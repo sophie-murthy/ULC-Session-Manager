@@ -53,8 +53,8 @@ An Example Student:
   firstname: 'Student',
   lastname: 'Person',
   username: "studentusername",
-  hash: // a password hash,
-  password: // an array of references to Course documents the student takes,
+  password: // a password hash,
+  courses: // an array of references to Course documents the student takes,
 }
 ```
 

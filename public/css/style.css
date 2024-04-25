@@ -239,16 +239,16 @@ h1.mainheader, h1 {
 }
 
 .allusers-button {
-    position: absolute; /* Positioned absolutely to not affect centering of the header */
-    left: 20px; /* Distance from the left edge */
-    top: 50%; /* Align vertically */
-    transform: translateY(-50%); /* Center vertically */
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 15px;
     border-radius: 5px;
     border: 1px solid white;
     color: white;
     padding: 5px;
-    text-align: center; /* Ensures text is centered within the button */
+    text-align: center;
 }
 
 .allusers-button:hover {

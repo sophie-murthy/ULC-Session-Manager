@@ -6,17 +6,17 @@
 
 The NYU University Learning Center (ULC) is a drop-in based tutoring service through NYU CAS that offers peer tutoring for a multitude of classes. Currently, the ULC uses software through NYU Connect, which is a meeting-based scheduling software that is not well equipped to handle drop-in based tutoring sessions.
 
-This tutoring session manager is a web app that will keep track of all current, waiting, and finished tutoring sessions. The system has information about all of the tutors, all of the courses they tutor, and their current schedule. The system will be able to pair a student with a tutor, begin a session, keep track of the timing of the session and other relevant details, and provide the tutor with an evaluation form to fill out about the student after the session. The system will also be able to keep track of a waitlist when all available tutors are in sessions, and will allow users to move students from the waitlist into a current session. 
+This tutoring session manager is a web app that will keep track of all current, waiting, and finished tutoring sessions. The system has information about all of the tutors, and all of the courses they tutor. The system will be able to pair a student with a tutor, begin a session, keep track of the timing of the session and other relevant details, and provide the tutor with an evaluation form to fill out about the student after the session. The system will also be able to keep track of a waitlist when all available tutors are in sessions, and will allow users to move students from the waitlist into a current session. 
 
 
 
 ## Data Model
 
-The application will store tutors, admins, students, sessions (current, pending, and completed), and courses (potentially).
+The application will store tutors, admins, students, sessions (current, pending, and completed), and courses.
 
 * tutors can have multiple courses (via references)
 * students can have multiple courses (via references)
-* sessions can have one tutor and multiple students (via references) as well as one course (via reference)
+* sessions can have one tutor and one student (via references) as well as one course (via reference)
 * sessions can also have an evaluation object (via embedding)
 
 * admins can see all sessions
@@ -69,7 +69,7 @@ An Example Session:
   end: // the date and time the session ended
   status: "Completed", // can be pending or in progress as well
   location: "ULC ARC",
-  evaluation: {prepared: True}
+  evaluation: {prepared: True, notes: "good student"}
 }
 ```
 
@@ -131,18 +131,16 @@ An Example Course:
 ## User Stories or Use Cases
 
 1. as non-registered user, I can register a new account with the site
-2. as a user, I can log in to the site
-3. as a user, I can edit my profile
-4. as an admin, I can register new tutors and new students 
-5. as an admin, I can view and edit all sessions (in progress, pending, and completed)
-6. as a tutor, I can add new sessions and view all of my sessions (in progress, pending, and completed)
+2. as a user, I can log in to the site 
+3. as an admin, I can see all student and tutor users
+4. as an admin, I can view all sessions (in progress, pending, and completed)
+5. as an admin, I can edit pending sessions
+6. as a tutor, I can start new sessions and view all of my sessions (in progress, pending, and completed)
 7. as a tutor, I can end and evaluate sessions 
 8. as a tutor, I can edit my sessions 
-9. as a student, I can register for a session
+9. as a student, I can request a session for a course I am taking
 
 ## Research Topics
-
-(__TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed)
 
 * (2 points) Use a CSS framework or UI toolkit
     * I'm planning on using Tailwind CSS for styling my site

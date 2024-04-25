@@ -3,6 +3,17 @@ document.addEventListener('DOMContentLoaded', async function() {
     const data = await res.json();
     if (data) {
         const sessions = data.sessions;
+        let currentSessions = false;
+        for (const session of sessions) {
+            if (session.status === "in progress" || session.status === "pending") {
+                currentSessions = true;
+                break;
+            }
+        }
+        if (!currentSessions) {
+            const noSessions = document.querySelector('.no-sessions');
+            noSessions.style.display = 'block';
+        }
         for (const session of sessions) {
             if (session.status === "pending") {
                 const sessionElement = document.createElement('div');

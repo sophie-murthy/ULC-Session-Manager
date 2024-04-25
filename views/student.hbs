@@ -8,8 +8,8 @@
   <button id="closeCoursePopup" class = "close">&times;</button>
   <form id="courseForm" method = "POST" action = "/student">
     <label for="courseSelect" class = "courseSelLabel">Choose a course:</label>
-    <select id="courseSelect" name = "course">
-        <option value="0">Select a course</option>
+    <select id="courseSelect" name = "course" required>
+        <option value="0" selected disabled>Select a course</option>
         {{#each user.courses as |course|}}
             <option value="{{course.id}}">{{course.title}}</option>
         {{/each}}

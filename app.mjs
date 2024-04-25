@@ -9,6 +9,7 @@ import session from 'express-session';
 import mongoose from 'mongoose';
 import flash from 'connect-flash';
 import bcrypt from 'bcryptjs';
+import moment from 'moment';
 
 const app = express();
 
@@ -180,8 +181,6 @@ app.get('/api/sessions', async (req, res) => {
             res.json(sessions);
         } else if (req.user.type === 'tutor') {
             const user = await Tutor.findById(req.user.id).exec();
-            //const sessions3 = await Session.find({tutor: user}).exec();
-            //console.log('sessions', sessions3);
             const sessions = [];
             const allSessions = await Session.find();
             for (const session of allSessions) {
@@ -224,10 +223,7 @@ app.post('/api/sessions/:id', async (req, res) => {
         if (session.tutor._id.toString() === user._id.toString()) {
             if (req.body.status === 'in progress' || req.body.status === 'completed') {
                 session.status = req.body.status;
-                const date = new Date();
-                const estTime = date.toLocaleString('en-US', { timeZone: 'America/New_York' });
-                const time = estTime.split(",")[1].split(":").join(":").trim();
-                session.start = time;
+                session.start = moment().format('LT');
                 await session.save();
                 return res.json(session);
             }
@@ -304,9 +300,11 @@ app.post('/student' , async (req, res) => {
     const user = await Student.findById(req.user.id).exec();
     const coursename = req.body.course;
     const course = await Course.findOne({_id: coursename});
-    const date = new Date();
-    const estTime = date.toLocaleString('en-US', { timeZone: 'America/New_York' });
-    const time = estTime.split(",")[1].split(":").join(":");
+    if (!course) {
+        res.redirect('/');
+        return;
+    }
+    const time = moment().format('LT');
     const newSession = new Session({tutor: null, students: [user], course: course, start: time, end: null, location: null, status: 'pending', evaluation: null});
     await newSession.save();
     res.redirect('/');
@@ -403,11 +401,7 @@ app.post('/edit/:id' , async (req, res) => {
                 return res.status(401).json({ error: 'User not authorized' });
             }
             if (req.body.start) {
-                const date = new Date(req.body.start);
-                const estTime = date.toLocaleString('en-US', { timeZone: 'America/New_York' });
-                const time = estTime.split(",")[1].split(":").join(":");
-                console.log(time);
-                session.start = time;
+                session.start = moment(req.body.start).format('LT');
             }
         }
 
@@ -483,17 +477,12 @@ app.post('/end/:id', async (req, res) => {
         }
         session.status = 'completed';
         if (!req.body.end) {
-            const date = new Date();
-            const estTime = date.toLocaleString('en-US', { timeZone: 'America/New_York' });
-            const time = estTime.split(",")[1].split(":").join(":");
-            session.end = time;
+            session.end = moment().format('LT');
         } else {
-            const time = req.body.end.split(',')[1];
-            session.end = time;
+            session.end = moment(req.body.end).format('LT');
         }
         if (req.body.start) {
-            const time = req.body.start.split(',')[1];
-            session.start = time;
+            session.start = moment(req.body.start).format('LT');
         }
 
         const evaluation = new Evaluation(req.body.prepared, req.body.content, req.body.notes);

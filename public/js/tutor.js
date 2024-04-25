@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     const data = await res.json();
     if (data) {
         const sessions = data.sessions;
-        const user = data.user;
         for (const session of sessions) {
             if (session.status === "pending") {
                 const sessionElement = document.createElement('div');

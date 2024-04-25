@@ -126,6 +126,9 @@ document.addEventListener('DOMContentLoaded', async function() {
                             editModal.close();
                         });
 
+                        sessionElement.querySelector('.cancel-button').remove();
+
+                        const cancelButton = document.createElement('button');
                         cancelButton.textContent = 'Cancel Session';
                         cancelButton.classList.add('cancel-button', 'shadow-lg');
                         cancelButton.addEventListener('click', async function() {

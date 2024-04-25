@@ -1,7 +1,9 @@
-{{message}}
 <div class = "login-container rounded shadow-lg"> 
     <form method = "POST" action = "/register">
         <h2 class = "login-header">Register</h2>
+        {{#if message}}
+        <h2 class = "login-error">{{message}}</h2>
+        {{/if}}
         <div class="container">
             <input type="radio" id="student" name="role" value="student" class = "user-btn" required>
             <label for="student" class = "user-btn-label">Student</label>

@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
         } else if (req.user.type === 'student') {
             res.render('student', {user: req.user});
         } else {
-            res.render('login', {message: "something wrong"})
+            res.render('login', {message: "something wrong"});
         }
     } else {
         res.redirect('/login');
@@ -185,7 +185,7 @@ app.get('/api/sessions', async (req, res) => {
             const sessions = [];
             const allSessions = await Session.find();
             for (const session of allSessions) {
-                if (session.tutor?._id.toString() == user._id.toString()) {
+                if (session.tutor?._id.toString() === user._id.toString()) {
                     sessions.push(session);
                 }
             }
@@ -430,6 +430,39 @@ app.post('/edit/:id' , async (req, res) => {
     }
 });
 
+class Evaluation {
+    constructor(prepared, content, notes) {
+        this._prepared = prepared;
+        this._content = content;
+        this._notes = notes;
+    }
+
+    get prepared() {
+        return this._prepared;
+    }
+
+    set prepared(value) {
+        this._prepared = value;
+    }
+
+    get content() {
+        return this._content;
+    }
+
+    set content(value) {
+        this._content = value;
+    }
+
+    get notes() {
+        return this._notes;
+    }
+
+    set notes(value) {
+        this._notes = value;
+    }
+}
+
+
 app.post('/end/:id', async (req, res) => {
     if (!req.isAuthenticated()) {
         return res.redirect('/login');
@@ -462,10 +495,8 @@ app.post('/end/:id', async (req, res) => {
             const time = req.body.start.split(',')[1];
             session.start = time;
         }
-        const evaluation = {};
-        evaluation.prepared = req.body.prepared;
-        evaluation.content = req.body.content;
-        evaluation.notes = req.body.notes;
+
+        const evaluation = new Evaluation(req.body.prepared, req.body.content, req.body.notes);
         session.evaluation = evaluation;
         await session.save();
         return res.redirect('/');
@@ -493,6 +524,23 @@ app.get('/completed', async (req, res) => {
         res.redirect('/');
     }
 });
+
+app.use((req, res, next) => {
+    res.status(404);
+
+    if (req.accepts('html')) {
+        res.render('404', { url: req.url });
+        return;
+    }
+
+    if (req.accepts('json')) {
+        res.json({ error: 'Not found' });
+        return;
+    }
+
+    res.type('txt').send('Not found');
+});
+
 
 
 app.listen(process.env.PORT);

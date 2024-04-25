@@ -1,12 +1,19 @@
-<div class = "settings-container2">
-    {{#if type}}
-        <h1 class = "mainheader">Sessions with {{user.firstname}} {{user.lastname}}</h1>
-    {{else}}
-        <h1 class = "mainheader">Welcome {{user.firstname}} {{user.lastname}}</h1>
+{{#if type}}
+    <div class="settings-container2">
+        <a href="/settings" class="settings-button">Settings</a>
+        <div class="header-container">
+            <h1 class="mainheader">Sessions with {{user.firstname}} {{user.lastname}}</h1>
+        </div>
+    </div>
+{{else}}
+    <div class="settings-container2">
         <a href="/users" class = "allusers-button text-center">All Users</a>
-    {{/if}}
-    <a href="/settings" class = "settings-button">Settings</a>
-</div>
+        <a href="/settings" class="settings-button">Settings</a>
+        <div class="header-container">
+            <h1 class="mainheader">Welcome {{user.firstname}} {{user.lastname}}</h1>
+        </div>
+    </div>
+{{/if}}
 <div class = "session-headers">
     <a href = "/" class = "ip-header">Current Sessions</a>
     <a href = "/completed" class = "wr-header">Past Sessions</a>
@@ -35,26 +42,26 @@
                     <h3 class = "modal-label font-bold">Preparedness</h3>
                 </div>
                 <div class = "input-group3">
-                    <h3>{{session.evaluation.prepared}}</h3>
+                    <h3>{{session.evaluation._prepared}}</h3>
                 </div>
-                {{#if session.evaluation.content}}
+                {{#if session.evaluation._content}}
                 <div class = "input-group2">
                     <h3 class = 'modal-label font-bold'>Session Content</h3>
                 </div>
                 <div class = "input-group3">
                     <ul>
-                        {{#each session.evaluation.content as |content|}}
+                        {{#each session.evaluation._content as |content|}}
                         <li>{{content}}</li>
                         {{/each}}
                     </ul>
                 </div>
                 {{/if}}
-                {{#if session.evaluation.notes}}
+                {{#if session.evaluation._notes}}
                 <div class = "input-group2">
                     <h3 class = "modal-label font-bold">Notes</h3>
                 </div>
                 <div class = "input-group3">
-                    <p>{{session.evaluation.notes}}</p>
+                    <p>{{session.evaluation._notes}}</p>
                 </div>
                 {{/if}}
             </div>

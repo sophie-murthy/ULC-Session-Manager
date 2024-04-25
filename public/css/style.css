@@ -6,26 +6,22 @@
 .mainheader {
     background-color: rgb(96, 27, 156);
     height: 75px;
-    width: 100%;
     font-family: Didot;
-    margin: 0px;
+    margin: 0px; 
     padding: 0px;
     color: white;
     line-height: 75px;
-    text-align: center;
     font-size: 30px;
-
 }
 
-
-h1.mainheader {
-    margin: 0;
-    
-}
-
-h1 {
+h1.mainheader, h1 {
     margin: 0;
     padding: 0;
+}
+
+.header-container {
+    width: 100%;
+    text-align: center;
 }
 
 .login-container {
@@ -227,12 +223,15 @@ h1 {
 }
 
 .settings-button {
+    position: absolute;
+    right: 20px; 
+    top: 50%;
+    transform: translateY(-50%); 
     font-size: 15px;
     border-radius: 5px;
     border: 1px solid white;
     color: white;
     padding: 5px;
-
 }
 
 .settings-button:hover {
@@ -240,13 +239,16 @@ h1 {
 }
 
 .allusers-button {
+    position: absolute; /* Positioned absolutely to not affect centering of the header */
+    left: 20px; /* Distance from the left edge */
+    top: 50%; /* Align vertically */
+    transform: translateY(-50%); /* Center vertically */
     font-size: 15px;
     border-radius: 5px;
     border: 1px solid white;
     color: white;
     padding: 5px;
-    margin-right: 10px;
-    width: 85px;
+    text-align: center; /* Ensures text is centered within the button */
 }
 
 .allusers-button:hover {
@@ -255,22 +257,20 @@ h1 {
 
 .settings-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     background-color: rgb(96, 27, 156);
     height: 75px;
-    padding-right: 20px;
     margin-bottom: 50px;
+    position: relative; 
 }
 
 .settings-container2 {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     background-color: rgb(96, 27, 156);
     height: 75px;
-    padding-right: 20px;
     margin-bottom: 0px;
+    position: relative;
 }
 
 .settings-course-card {
@@ -814,4 +814,36 @@ h1 {
     text-align: center;
     margin-top: 50px;
 
+}
+
+.four04 {
+    font-size: 60px;
+    text-align: center;
+    margin-top: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    color: rgb(96, 27, 156);
+}
+
+.pnf {
+    font-size: 40px;
+    text-align: center;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    color: rgb(96, 27, 156);
+
+}
+
+.return-home {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    color: rgb(96, 27, 156);
+    text-decoration: underline;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

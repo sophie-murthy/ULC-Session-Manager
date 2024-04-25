@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     const res = await fetch('/api/current_user');
     const data = await res.json();
     if (data.user) {
-        const user = data.user;
         const sessions = data.session;
         const requestButton = document.createElement('button');
         requestButton.classList.add('request-button', 'shadow-lg');
@@ -17,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         document.querySelector('.session-list').appendChild(requestButton);
         if (sessions && sessions.length > 0) {
             for (const session of sessions) {
-                if (session.status == "pending") {
+                if (session.status === "pending") {
                     const sessionElement = document.createElement('div');
                     const title = document.createElement('h3');
                     title.textContent = "Pending";
@@ -60,7 +59,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     });
                     sessionElement.appendChild(cancelButton);
                     document.querySelector('.session-list').appendChild(sessionElement);
-                } else if (session.status == "in progress") {
+                } else if (session.status === "in progress") {
                     const sessionElement = document.createElement('div');
                     sessionElement.classList.add('session', 'ft-30', 'rounded', 'shadow-lg');
                     sessionElement.id = "S" + session._id;

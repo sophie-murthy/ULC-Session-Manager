@@ -150,20 +150,27 @@ as an admin:
 ## Research Topics
 
 * (2 points) Use a CSS framework or UI toolkit
-    * I'm planning on using Tailwind CSS for styling my site
+    * I used Tailwind CSS for styling my site
     * Tailwind is a CSS framework that provides utility classes to help with design
-    * I can create a theme for the site and use it to style the site without the limitations of standard CSSS
-    * I could potentially used Tailwind UI to help with the design of the site using the components and templates
+    * I can create a theme for the site and use it to style the site without the limitations of standard CSS
 * (4 points) Use a server side JavaScript library or module
-    * I'm going to be using passport.js for user authentication
+    * I used passport.js for user authentication
     * Passport.js is a middleware that provides authentication for Node.js
-    * I can use it to authenticate users logging into the site and prevent unauthorized access
-    * I could potentially use passport-local to authenticate users using a username and password or passport-google-oauth20 to authenticate users using their Google account
-    * I have never used this before, so I've assigned it 4 points
+    * I can use it to authenticate users logging into the site and prevent unauthorized access using a username and password
+
+    * I also used bcryptjs to hash passwords
+    * Bcrypt.js is a library that hashes passwords to protect them from being stolen
+    * I can use it to hash passwords when users register for the site and store them in the database
+
+    * I also used momentjs to format dates and times
+    * Moment.js is a library that helps with formatting dates and times
+    * I can use it to format the dates and times of sessions in a more readable way
+
+    * I have assigned this portion 4 points for using all of these libraries together
 * (5 points) Automated functional testing for all routes
-    * I will use Headless Chrome to test all of my routes
+    * I used Headless Chrome to test all of my routes
     * Headless Chrome is a version of the Chrome browser that can run without a user interface, so I can test my routes in a browser environment
-    * I can use it to test all of my routes to make sure they are working properly
+    * I can use it to test my routes to make sure they are working properly
 
 ## [Headless Chrome Testing Clip](documentation/headless-chrome.gif)
 

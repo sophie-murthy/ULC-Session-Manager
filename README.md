@@ -98,6 +98,17 @@ An Example Course:
 
 ![list](documentation/tutor.png)
 
+/ - editing a session
+
+as a tutor:
+![list](documentation/tutor-edit.png)
+
+as an admin:
+![list](documentation/admin-edit.png)
+
+/ - ending a session
+![list](documentation/end.png)
+
 /settings - page for editing a user's profile
 
 ![list](documentation/settings.png)
@@ -114,13 +125,9 @@ An Example Course:
 
 ![list](documentation/register.png)
 
-/edit - page for editing a student
+/completed - page for viewing all completed sessions
 
-![list](documentation/edit.png)
-
-/end - page for ending a session
-
-![list](documentation/end.png)
+![list](documentation/completed.png)
 
 ## Site map
 

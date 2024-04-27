@@ -19,11 +19,6 @@ h1.mainheader, h1 {
     padding: 0;
 }
 
-.header-container {
-    width: 100%;
-    text-align: center;
-}
-
 .login-container {
     width: 40%;
     display: flex;
@@ -256,7 +251,7 @@ h1.mainheader, h1 {
 }
 
 .settings-container {
-    display: flex;
+    display: flex; 
     align-items: center;
     background-color: rgb(96, 27, 156);
     height: 75px;
@@ -265,12 +260,7 @@ h1.mainheader, h1 {
 }
 
 .settings-container2 {
-    display: flex;
-    align-items: center;
-    background-color: rgb(96, 27, 156);
     height: 75px;
-    margin-bottom: 0px;
-    position: relative;
 }
 
 .settings-course-card {
@@ -457,11 +447,6 @@ h1.mainheader, h1 {
 .display-none {
     display: none;
 
-}
-
-.session-headers {
-    display: flex;
-    width: 100%;
 }
 
 .wr-header, .ip-header {
@@ -814,36 +799,4 @@ h1.mainheader, h1 {
     text-align: center;
     margin-top: 50px;
 
-}
-
-.four04 {
-    font-size: 60px;
-    text-align: center;
-    margin-top: 50px;
-    margin-right: auto;
-    margin-left: auto;
-    color: rgb(96, 27, 156);
-}
-
-.pnf {
-    font-size: 40px;
-    text-align: center;
-    margin-top: 20px;
-    margin-right: auto;
-    margin-left: auto;
-    color: rgb(96, 27, 156);
-
-}
-
-.return-home {
-    font-size: 20px;
-    text-align: center;
-    margin-top: 20px;
-    margin-right: auto;
-    margin-left: auto;
-    color: rgb(96, 27, 156);
-    text-decoration: underline;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }

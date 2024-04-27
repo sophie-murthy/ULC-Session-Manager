@@ -158,6 +158,9 @@ An Example Course:
     * Headless Chrome is a version of the Chrome browser that can run without a user interface, so I can test my routes in a browser environment
     * I can use it to test all of my routes to make sure they are working properly
 
+## [Link to Headless Chrome Testing Clip](headless chrome testing.mov)
+
+
 ## [Link to Initial Main Project File](app.mjs) 
 
 ![link to app.mjs](app.mjs)
